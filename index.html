@@ -10,20 +10,21 @@
             font-family: "Microsoft JhengHei", Arial, sans-serif;
         }
         body {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
             background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
         }
         .container {
+            max-width: 1000px;
+            margin: 0 auto;
             background-color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         h1 {
-            text-align: center;
             color: #d32f2f;
+            text-align: center;
             margin-bottom: 30px;
         }
         .form-section {
@@ -60,94 +61,84 @@
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 12px;
             text-align: left;
         }
         th {
             background-color: #f2f2f2;
             font-weight: bold;
         }
-        .attendance-select {
-            width: 100%;
-            padding: 5px;
-        }
-        .preview-section {
-            margin-top: 30px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        .preview-content {
-            white-space: pre-line;
-            background-color: white;
-            padding: 15px;
-            border-radius: 5px;
-            font-family: Arial, sans-serif;
-            line-height: 1.5;
-        }
-        .button-group {
-            display: flex;
-            justify-content: center;
+        .attendance-summary {
             margin-top: 20px;
-            gap: 10px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .action-buttons {
+            margin-top: 20px;
+            text-align: center;
         }
         button {
             padding: 10px 20px;
+            margin: 0 10px;
             background-color: #d32f2f;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s;
         }
         button:hover {
             background-color: #b71c1c;
         }
-        .whatsapp-btn {
-            background-color: #25D366;
+        .whatsapp-output {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f0f8f0;
+            border-radius: 5px;
+            white-space: pre-line;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
         }
-        .whatsapp-btn:hover {
-            background-color: #128C7E;
+        .status-Yes {
+            color: #2e7d32;
         }
-        .status-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-            justify-content: center;
+        .status-Abs {
+            color: #ff8f00;
         }
-        .status-item {
-            display: flex;
-            align-items: center;
-            margin-right: 15px;
+        .status-O {
+            color: #c62828;
         }
-        .status-icon {
-            margin-right: 5px;
-            font-size: 18px;
+        .status-L {
+            color: #1565c0;
+        }
+        .status-S {
+            color: #6a1b9a;
+        }
+        .status-C {
+            color: #00838f;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>乒乓球B隊預備班點名系統</h1>
+        <h1>🏓 乒乓球B隊預備班點名系統</h1>
         
         <div class="form-section">
             <div class="form-row">
                 <div class="form-group">
-                    <label for="trainingDate">日期</label>
+                    <label for="trainingDate">📅 訓練日期</label>
                     <input type="date" id="trainingDate">
                 </div>
                 <div class="form-group">
-                    <label for="trainingTime">時間</label>
+                    <label for="trainingTime">🕒 訓練時間</label>
                     <select id="trainingTime">
                         <option value="星期四（16:00-18:00）">星期四（16:00-18:00）</option>
                         <option value="星期六（10:00-13:00）">星期六（10:00-13:00）</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="trainingLocation">地點</label>
+                    <label for="trainingLocation">📍 訓練地點</label>
                     <select id="trainingLocation">
                         <option value="圓洲角體育館">圓洲角體育館</option>
                         <option value="保安道體育館">保安道體育館</option>
@@ -156,93 +147,59 @@
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label>負責教練</label>
+                    <label>👨‍🏫 負責教練</label>
                     <div>梁金祐、冼佩蓮</div>
                 </div>
             </div>
         </div>
 
         <div class="form-section">
-            <h3>運動員點名</h3>
+            <h2>運動員點名</h2>
             <table id="attendanceTable">
                 <thead>
                     <tr>
                         <th width="5%">編號</th>
-                        <th width="35%">運動員姓名</th>
-                        <th width="60%">出席狀態</th>
+                        <th width="25%">運動員姓名</th>
+                        <th width="20%">出席狀態</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 運動員列表將由JavaScript生成 -->
+                    <!-- 運動員名單將由JavaScript動態生成 -->
                 </tbody>
             </table>
-            
-            <div class="status-legend">
-                <div class="status-item">
-                    <span class="status-icon">✅</span> <span>Yes: 出席</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-icon">📝</span> <span>Abs: 請假</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-icon">❌</span> <span>O: 無故缺席</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-icon">⏰</span> <span>L: 遲到</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-icon">🤒</span> <span>S: 病假</span>
-                </div>
-                <div class="status-item">
-                    <span class="status-icon">🏆</span> <span>C: 出外比賽</span>
-                </div>
-            </div>
         </div>
 
-        <div class="preview-section">
-            <h3>點名記錄預覽</h3>
-            <div class="preview-content" id="previewContent">
-                <!-- 預覽內容將由JavaScript生成 -->
-            </div>
+        <div class="action-buttons">
+            <button id="generateReport">生成點名報告</button>
+            <button id="sendWhatsApp">推送至 WhatsApp</button>
+            <button id="resetForm">重置表格</button>
         </div>
 
-        <div class="button-group">
-            <button id="generateBtn">生成點名記錄</button>
-            <button id="whatsappBtn" class="whatsapp-btn">傳送至 WhatsApp</button>
+        <div class="whatsapp-output" id="whatsappOutput" style="display: none;">
+            <!-- WhatsApp 文案將在這裡顯示 -->
         </div>
     </div>
 
     <script>
         // 運動員名單
         const athletes = [
-            "陳泳偲",
-            "陳紫漩",
-            "羅嘉熙",
-            "黃駿𧙗",
-            "李文灝",
-            "許銘賢",
-            "華悅恩",
-            "張梓賢",
-            "ALESIVAN",
-            "陳永悅",
-            "吳家俊",
-            "陳澤賢",
-            "石振星",
-            "張思澈"
+            "陳泳偲", "陳紫漩", "羅嘉熙", "黃駿𧙗", "李文灝", 
+            "許銘賢", "華悅恩", "張梓賢", "ALESIVAN", "陳永悅", 
+            "吳家俊", "陳澤賢", "石振星", "張思澈"
         ];
 
         // 出席狀態選項與對應的emoji
         const statusOptions = [
-            { value: "Yes", text: "✅ Yes: 出席" },
-            { value: "Abs", text: "📝 Abs: 請假" },
-            { value: "O", text: "❌ O: 無故缺席" },
-            { value: "L", text: "⏰ L: 遲到" },
-            { value: "S", text: "🤒 S: 病假" },
-            { value: "C", text: "🏆 C: 出外比賽" }
+            { value: "Yes", text: "✅ 出席", emoji: "✅" },
+            { value: "Abs", text: "📝 請假", emoji: "📝" },
+            { value: "O", text: "❌ 無故缺席", emoji: "❌" },
+            { value: "L", text: "⏰ 遲到", emoji: "⏰" },
+            { value: "S", text: "🤒 病假", emoji: "🤒" },
+            { value: "C", text: "🏆 出外比賽", emoji: "🏆" }
         ];
 
         // 初始化表格
-        function initTable() {
+        function initializeTable() {
             const tableBody = document.querySelector("#attendanceTable tbody");
             tableBody.innerHTML = "";
             
@@ -252,15 +209,18 @@
                 // 編號
                 const numberCell = document.createElement("td");
                 numberCell.textContent = index + 1;
+                row.appendChild(numberCell);
                 
                 // 姓名
                 const nameCell = document.createElement("td");
                 nameCell.textContent = athlete;
+                row.appendChild(nameCell);
                 
-                // 狀態選擇
+                // 狀態下拉選單
                 const statusCell = document.createElement("td");
                 const select = document.createElement("select");
-                select.className = "attendance-select";
+                select.className = "status-select";
+                select.dataset.athlete = athlete;
                 
                 statusOptions.forEach(option => {
                     const optionElement = document.createElement("option");
@@ -269,105 +229,116 @@
                     select.appendChild(optionElement);
                 });
                 
-                // 默認選擇"出席"
+                // 默認設置為出席
                 select.value = "Yes";
                 
                 statusCell.appendChild(select);
-                
-                row.appendChild(numberCell);
-                row.appendChild(nameCell);
                 row.appendChild(statusCell);
                 
                 tableBody.appendChild(row);
             });
         }
 
-        // 生成點名記錄
-        function generateRecord() {
+        // 生成點名報告
+        function generateReport() {
             const date = document.getElementById("trainingDate").value;
             const time = document.getElementById("trainingTime").value;
             const location = document.getElementById("trainingLocation").value;
             
-            // 格式化日期顯示
-            let formattedDate = "";
-            if (date) {
-                const dateObj = new Date(date);
-                formattedDate = `${dateObj.getFullYear()}年${dateObj.getMonth() + 1}月${dateObj.getDate()}日`;
-            }
+            // 獲取所有狀態選擇
+            const statusSelects = document.querySelectorAll(".status-select");
+            const attendanceData = [];
             
-            // 獲取當前時間
-            const now = new Date();
-            const generatedTime = `${now.getFullYear()}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-            
-            // 收集運動員狀態
-            const athleteStatus = [];
-            const rows = document.querySelectorAll("#attendanceTable tbody tr");
-            
-            rows.forEach((row, index) => {
-                const name = athletes[index];
-                const statusSelect = row.querySelector("select");
-                const statusValue = statusSelect.value;
-                const statusText = statusOptions.find(opt => opt.value === statusValue).text;
-                
-                athleteStatus.push({
-                    name: name,
-                    status: statusText
+            statusSelects.forEach(select => {
+                const athlete = select.dataset.athlete;
+                const status = select.value;
+                const statusObj = statusOptions.find(opt => opt.value === status);
+                attendanceData.push({
+                    athlete: athlete,
+                    status: status,
+                    emoji: statusObj.emoji,
+                    text: statusObj.text
                 });
             });
             
-            // 生成預覽內容
-            let previewContent = `📅 日期：${formattedDate}\n`;
-            previewContent += `⏰ 時間：${time}\n`;
-            previewContent += `📍 地點：${location}\n`;
-            previewContent += `👨‍🏫 負責教練：梁金祐、冼佩蓮\n\n`;
-            previewContent += `運動員出席情況：\n`;
+            // 生成WhatsApp文案
+            let whatsappText = `🏓 乒乓球B隊預備班訓練點名記錄\n\n`;
+            whatsappText += `📅 日期：${date}\n`;
+            whatsappText += `🕒 時間：${time}\n`;
+            whatsappText += `📍 地點：${location}\n`;
+            whatsappText += `👨‍🏫 負責教練：梁金祐、冼佩蓮\n\n`;
+            whatsappText += `運動員出席情況：\n`;
             
-            athleteStatus.forEach((item, index) => {
-                previewContent += `${(index + 1).toString().padStart(2, '0')}. ${item.name} - ${item.status}\n`;
+            attendanceData.forEach((item, index) => {
+                whatsappText += `${index + 1}. ${item.athlete} - ${item.text}\n`;
             });
             
-            previewContent += `\n此記錄由點名系統自動生成\n`;
-            previewContent += `生成時間：${generatedTime}`;
+            // 添加生成時間
+            const now = new Date();
+            const generatedTime = now.toLocaleString("zh-Hant", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
             
-            document.getElementById("previewContent").textContent = previewContent;
+            whatsappText += `\n此記錄由點名系統自動生成\n生成時間：${generatedTime}`;
+            
+            // 顯示WhatsApp文案
+            const outputDiv = document.getElementById("whatsappOutput");
+            outputDiv.textContent = whatsappText;
+            outputDiv.style.display = "block";
         }
 
-        // 傳送至WhatsApp
+        // 推送至WhatsApp
         function sendToWhatsApp() {
-            const previewContent = document.getElementById("previewContent").textContent;
-            const encodedText = encodeURIComponent(previewContent);
+            const outputDiv = document.getElementById("whatsappOutput");
+            if (outputDiv.style.display === "none") {
+                alert("請先生成點名報告");
+                return;
+            }
+            
+            const whatsappText = outputDiv.textContent;
+            const encodedText = encodeURIComponent(whatsappText);
             const whatsappUrl = `https://wa.me/?text=${encodedText}`;
-            window.open(whatsappUrl, '_blank');
+            
+            window.open(whatsappUrl, "_blank");
+        }
+
+        // 重置表格
+        function resetForm() {
+            document.getElementById("trainingDate").value = "";
+            document.getElementById("trainingTime").selectedIndex = 0;
+            document.getElementById("trainingLocation").selectedIndex = 0;
+            
+            const statusSelects = document.querySelectorAll(".status-select");
+            statusSelects.forEach(select => {
+                select.value = "Yes";
+            });
+            
+            document.getElementById("whatsappOutput").style.display = "none";
+        }
+
+        // 設置默認日期為今天
+        function setDefaultDate() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
+            const todayString = `${year}-${month}-${day}`;
+            document.getElementById("trainingDate").value = todayString;
         }
 
         // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            // 設置默認日期為今天
-            const today = new Date();
-            const formattedDate = today.toISOString().split('T')[0];
-            document.getElementById('trainingDate').value = formattedDate;
-            
-            // 初始化表格
-            initTable();
-            
-            // 生成初始記錄
-            generateRecord();
+        document.addEventListener("DOMContentLoaded", function() {
+            initializeTable();
+            setDefaultDate();
             
             // 綁定事件
-            document.getElementById('generateBtn').addEventListener('click', generateRecord);
-            document.getElementById('whatsappBtn').addEventListener('click', sendToWhatsApp);
-            
-            // 當表單元素改變時自動更新預覽
-            document.getElementById('trainingDate').addEventListener('change', generateRecord);
-            document.getElementById('trainingTime').addEventListener('change', generateRecord);
-            document.getElementById('trainingLocation').addEventListener('change', generateRecord);
-            
-            // 當狀態選擇改變時自動更新預覽
-            document.addEventListener('change', function(e) {
-                if (e.target.classList.contains('attendance-select')) {
-                    generateRecord();
-                }
-            });
+            document.getElementById("generateReport").addEventListener("click", generateReport);
+            document.getElementById("sendWhatsApp").addEventListener("click", sendToWhatsApp);
+            document.getElementById("resetForm").addEventListener("click", resetForm);
         });
     </script>
 </body>
